@@ -46,10 +46,15 @@ php artisan key:generate
 ```
 php artisan storage:link
 ```
-6. Migrasikan tabel beserta seeder melalui terminal.
+6.Selanjutnya install library Midtrans terlebih dahulu melalui terminal:
+```
+composer require midtrans/midtrans-php
+```
+7. Migrasikan tabel beserta seeder melalui terminal.
 ```
 php artisan migrate:fresh --seed
 ```
+
 
 
 ## Lisensi
