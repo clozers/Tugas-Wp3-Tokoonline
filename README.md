@@ -46,7 +46,7 @@ php artisan key:generate
 ```
 php artisan storage:link
 ```
-6.Selanjutnya install library Midtrans terlebih dahulu melalui terminal:
+6. Selanjutnya install library Midtrans terlebih dahulu melalui terminal:
 ```
 composer require midtrans/midtrans-php
 ```
