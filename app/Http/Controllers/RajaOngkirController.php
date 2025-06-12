@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Customer;
 
 class RajaOngkirController extends Controller
 {
@@ -33,6 +36,18 @@ class RajaOngkirController extends Controller
             'price' => 'lowest',
         ]);
 
-        return back()->with('result', $response->json());
+        $data = $response->json();
+        // Simpan ongkir (misalnya biaya dari layanan pertama)
+        if (!empty($data['data'][0]['cost'])) {
+            session([
+                'shipping_cost' => $data['data'][0]['cost'],
+                'shipping_courier' => $request->input('courier')
+            ]);
+        }
+
+        return back()->with('result', $data);
     }
+
+
+
 }

@@ -176,6 +176,22 @@
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waveseffect waves-dark"
+                                href="#" aria-expanded="false"><i class="mdi mdi-shopping"></i><span
+                                    class="hide-menu">Data Pesanan </span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item"><a href="{{ route('backend.pesanan.proses') }}"
+                                        class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
+                                            class="hide-menu"> Data Pesanan Proses
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{ route('backend.pesanan.selesai') }}"
+                                        class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
+                                            class="hide-menu"> Data Pesanan Selesai
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waveseffect waves-dark"
                                 href="#" aria-expanded="false"><i class="mdi mdi-file-pdf-box"></i><span
                                     class="hide-menu">Laporan </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
@@ -187,6 +203,16 @@
                                 <li class="sidebar-item"><a href="{{ route('backend.laporan.formproduk') }}"
                                         class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
                                             class="hide-menu"> Produk
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{ route('backend.laporan.formpesananselesai') }}"
+                                        class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
+                                            class="hide-menu"> Pesanan Selesai
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{ route('backend.laporan.formpesananproses') }}"
+                                        class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span
+                                            class="hide-menu"> Pesanan Proses/Kirim
                                         </span></a>
                                 </li>
                             </ul>
@@ -320,6 +346,12 @@
     @endif
     <!-- konfirmasi success End-->
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Flot Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
     <script type="text/javascript">
         //Konfirmasi delete
         $('.show_confirm').click(function(event) {
@@ -339,9 +371,9 @@
                 if (result.isConfirmed) {
                     form.submit();
                     // Swal.fire('Terhapus!', 'Data berhasil dihapus.', 'success')
-                    //   .then(() => {
-                    //     form.submit();
-                    //   });
+                    // .then(() => {
+                    // form.submit();
+                    // });
                 }
             });
         });
@@ -366,6 +398,47 @@
                 console.error(error);
             });
     </script>
+    @push('scripts')
+        <script>
+            $(function() {
+                var data = [
+                    [1, 10],
+                    [2, 25],
+                    [3, 18],
+                    [4, 35],
+                    [5, 40],
+                ];
+
+                $.plot($("#flot-line-chart"), [{
+                    data: data,
+                    label: "Sample Data",
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        show: true
+                    }
+                }], {
+                    series: {
+                        lines: {
+                            show: true
+                        },
+                        points: {
+                            show: true
+                        }
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    },
+                    xaxis: {
+                        tickDecimals: 0,
+                        tickSize: 1
+                    }
+                });
+            });
+        </script>
+    @endpush
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -35,6 +36,9 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('midtrans.client_key') }}"></script>
+
 
 </head>
 
@@ -71,17 +75,20 @@
                     <ul class="header-btns">
                         <!-- Cart -->
                         <li class="header-cart dropdown default-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <a href="{{ route('order.cart') }}">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
+                                    <!-- <span class="qty">3</span> -->
                                 </div>
                                 <strong class="text-uppercase">Keranjang</strong>
+
                             </a>
                         </li>
                         <!-- /Cart -->
 
+
+                        <!-- Account -->
                         @if (Auth::check())
-                            <!-- Account -->
                             <li class="header-account dropdown default-dropdown">
                                 <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                                     <div class="header-btns-icon">
@@ -93,7 +100,8 @@
                                 <ul class="custom-menu">
                                     <li><a href="{{ route('customer.akun', ['id' => Auth::user()->id]) }}"><i
                                                 class="fa fa-user-o"></i> Akun Saya</a></li>
-                                    <li><a href="#"><i class="fa fa-check"></i> History</a></li>
+                                    <li><a href="{{ route('order.history') }}"><i class="fa fa-check"></i> History</a>
+                                    </li>
                                     <li>
                                         <a href="#"
                                             onclick="event.preventDefault(); document.getElementById('keluar-app').submit();"><i
@@ -118,8 +126,9 @@
                                 </div>
                                 <a href="{{ route('auth.redirect') }}" class="text-uppercase">Login</a>
                             </li>
-                            <!-- /Account -->
                         @endif
+                        <!-- /Account -->
+
 
 
                         <!-- Mobile nav toggle-->
@@ -176,8 +185,6 @@
                     <ul class="menu-list">
                         <li><a href="{{ route('beranda') }}">Beranda</a></li>
                         <li><a href="{{ route('produk.all') }}">Produk</a></li>
-                        <li><a href="#">Lokasi</a></li>
-                        <li><a href="#">Hubungi Kami</a></li>
                     </ul>
                 </div>
                 <!-- menu nav -->
@@ -249,46 +256,6 @@
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
                     <!-- aside widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Top Rated Product</h3>
-                        <!-- widget product -->
-                        <div class="product product-widget">
-                            <div class="product-thumb">
-                                <img src="{{ asset('frontend/img/thumb-product01.jpg') }}" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /widget product -->
-
-                        <!-- widget product -->
-                        <div class="product product-widget">
-                            <div class="product-thumb">
-                                <img src="{{ asset('frontend/img/thumb-product01.jpg') }}" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <h3 class="product-price">$32.50</h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /widget product -->
-                    </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
                     <div class="aside">

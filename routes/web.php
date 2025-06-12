@@ -43,12 +43,23 @@ Route::get('/produk/detail/{id}', [ProdukController::class, 'detail'])->name('pr
 Route::get('/produk/kategori/{id}', [ProdukController::class, 'produkKategori'])->name('produk.kategori');
 Route::get('/produk/all', [ProdukController::class, 'produkAll'])->name('produk.all');
 
+// Route Pesanan
+Route::get('backend/pesanan-proses', [OrderController::class, 'statusProses'])->name('backend.pesanan.proses')->middleware('auth');
+Route::get('backend/pesanan-selesai', [OrderController::class, 'statusSelesai'])->name('backend.pesanan.selesai')->middleware('auth');
+Route::get('pesanan/detail/{id}', [OrderController::class, 'statusDetail'])->name('backend.pesanan.detail')->middleware('auth');
+Route::get('pesanan/invoice/{id}', [OrderController::class, 'invoiceBackend'])->name('backend.pesanan.invoice')->middleware('auth');
+Route::match(['get', 'post'], 'pesanan/update/{id}', [OrderController::class, 'statusUpdate'])->name('backend.pesanan.update')->middleware('auth');
+Route::get('backend/laporan/form-pesanan-selesai', [OrderController::class, 'formOrderSelesai'])->name('backend.laporan.formpesananselesai')->middleware('auth');
+Route::get('backend/laporan/form-pesanan-proses', [OrderController::class, 'formOrderProses'])->name('backend.laporan.formpesananproses')->middleware('auth');
+Route::match(['get','post'],'backend/laporan/cetak-pesanan-proses', [OrderController::class, 'cetakOrderProses'])->name('backend.laporan.cetakpesananproses')->middleware('auth');
+Route::match(['get','post'],'backend/laporan/cetak-pesanan-selesai', [OrderController::class, 'cetakOrderSelesai'])->name('backend.laporan.cetakpesananselesai')->middleware('auth');
 // Route untuk Customer
 Route::resource('backend/customer', CustomerController::class, ['as' => 'backend'])->middleware('auth');
 
 
 
 // Route untuk menampilkan halaman akun customer
+
 Route::get('/customer/akun/{id}', [CustomerController::class, 'akun'])->name('customer.akun')->middleware('is.customer');
 Route::put('/customer/akun/{id}/update', [CustomerController::class, 'updateAkun'])->name('customer.akun.update')->middleware('is.customer');
 
@@ -61,6 +72,23 @@ Route::middleware('is.customer')->group(function () {
     // Route untuk menambahkan produk ke keranjang 
     Route::post('add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('order.addToCart');
     Route::get('cart', [OrderController::class, 'viewCart'])->name('order.cart');
+    Route::post('cart/update/{id}', [OrderController::class, 'updateCart'])->name('order.updateCart');
+    Route::post('remove/{id}', [OrderController::class, 'removeFromCart'])->name('order.remove');
+    Route::post('update-ongkir', [OrderController::class, 'updateOngkir'])->name('order.update-ongkir');
+    Route::match(['get', 'post'], 'select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
+    //midtrans
+    Route::get('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
+    Route::post('/midtrans-callback', [OrderController::class, 'callback']);
+    Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete');
+    // Route history
+    Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history');
+    Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice');
+
+
+
+
+    Route::get('select-shipping', [OrderController::class, 'selectShipping'])->name('order.selectShipping');
+    Route::post('/select-shipping/hitung', [RajaOngkirController::class, 'getCost'])->name('cek-ongkir.hitung');
 });
 
 //API Google
