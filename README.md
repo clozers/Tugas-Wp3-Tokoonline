@@ -52,7 +52,19 @@ composer require midtrans/midtrans-php
 ```
 7. Masukan API Key RajaOngkir,Google Account,Midtrans Kamu di file yang bernama .env 
 ```
-Nama File: tokoonline2.sql
+# API Google
+GOOGLE_CLIENT_ID=API KAMU
+GOOGLE_CLIENT_SECRET=API KAMU
+GOOGLE_REDIRECT_URL=API KAMU
+
+# API Raja Ongkir
+RAJAONGKIR_API_KEY=API KAMU
+RAJAONGKIR_BASE_URL=API KAMU
+
+# API Midtrans
+MIDTRANS_MERCHANT_ID=API KAMU
+MIDTRANS_CLIENT_KEY=API KAMU
+MIDTRANS_SERVER_KEY=API KAMU
 ```
 8. Masukan/Import data base yang ada di dalam repository ini ke database kamu
 ```
