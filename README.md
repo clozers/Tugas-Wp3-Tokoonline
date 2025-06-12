@@ -50,7 +50,11 @@ php artisan storage:link
 ```
 composer require midtrans/midtrans-php
 ```
-7. Masukan/Import data base yang ada di dalam repository ini ke database kamu
+7. Masukan API Key RajaOngkir,Google Account,Midtrans Kamu di file yang bernama .env 
+```
+Nama File: tokoonline2.sql
+```
+8. Masukan/Import data base yang ada di dalam repository ini ke database kamu
 ```
 Nama File: tokoonline2.sql
 ```
