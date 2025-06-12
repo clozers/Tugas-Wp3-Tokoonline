@@ -50,9 +50,9 @@ php artisan storage:link
 ```
 composer require midtrans/midtrans-php
 ```
-7. Migrasikan tabel beserta seeder melalui terminal.
+7. Masukan/Import data base yang ada di dalam repository ini ke database kamu
 ```
-php artisan migrate:fresh --seed
+Nama File: tokoonline2.sql
 ```
 
 
