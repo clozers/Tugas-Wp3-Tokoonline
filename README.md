@@ -23,7 +23,7 @@ Sebelumnya pastikan menginstall terlebih dahulu kebutuhan sistem untuk menggunak
 ## Cara Install
 1. Cloning repository ini melalui terminal. Tunggu hingga selesai cloning.
 ```
-git clone https://github.com/yuris60/TokoOnline.git
+https://github.com/clozers/Tugas-Wp3-Tokoonline.git
 ```
 2.  Buka project menggunakan Code Editor, lalu inisiasi dependensi composer melalui terminal.
 ```
