@@ -6,7 +6,7 @@
 
 ## Pengenalan Project
 
-Project ini merupakan project Laravel pada mata kuliah Web Programming II di Universitas Bina Sarana Informatika yang bertemakan tentang Toko Online.
+Project ini merupakan project Laravel pada mata kuliah Web Programming III di Universitas Bina Sarana Informatika yang bertemakan tentang Toko Online.
 
 ## Relasi Tabel
 <p align="center"><img src="public/backend/image/screenshot/ss_relasi.jpg" width="600" alt="Laravel Logo"></p>
